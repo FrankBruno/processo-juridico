@@ -1,16 +1,17 @@
 <?php
 
+
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Class Motivo
+ * Class Filial
  * @package App\Entity
  * @ORM\Entity()
- * @ORM\Table(name="motivo", schema="processo_juridico")
+ * @ORM\Table(name="filial", schema="processo_juridico")
  */
-class Motivo
+class Filial
 {
     /**
      * @ORM\Id()
@@ -21,13 +22,13 @@ class Motivo
     private $id;
 
     /**
-     * @ORM\Column(name="nome", type="string", length=80, nullable=false)
-     * @var string
+     * @ORM\Column(name="numero", type="integer", length=20, nullable=false)
+     * @var int
      */
-    private $nome;
+    private $numero;
 
     /**
-     * @ORM\Column(name="descricao", type="string", length=255, nullable=false)
+     * @ORM\Column(name="descricao", type="string", length=200, nullable=false)
      * @var string
      */
     private $descricao;
@@ -49,19 +50,19 @@ class Motivo
     }
 
     /**
-     * @return string
+     * @return int
      */
-    public function getNome()
+    public function getNumero()
     {
-        return $this->nome;
+        return $this->numero;
     }
 
     /**
-     * @param string $nome
+     * @param int $numero
      */
-    public function setNome(string $nome)
+    public function setNumero(int $numero)
     {
-        $this->nome = $nome;
+        $this->numero = $numero;
     }
 
     /**
@@ -82,6 +83,6 @@ class Motivo
 
     public function __toString()
     {
-        return $this->nome;
+        return $this->numero . '-' . $this->descricao;
     }
 }

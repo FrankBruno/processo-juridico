@@ -5,12 +5,10 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Class Motivo
- * @package App\Entity
  * @ORM\Entity()
- * @ORM\Table(name="motivo", schema="processo_juridico")
+ * @ORM\Table(name="requerente", schema="processo_juridico")
  */
-class Motivo
+class Requerente
 {
     /**
      * @ORM\Id()
@@ -21,16 +19,22 @@ class Motivo
     private $id;
 
     /**
-     * @ORM\Column(name="nome", type="string", length=80, nullable=false)
+     * @ORM\Column(name="nome", type="string", length=255, nullable=false)
      * @var string
      */
     private $nome;
 
     /**
-     * @ORM\Column(name="descricao", type="string", length=255, nullable=false)
      * @var string
+     * @ORM\Column(type="string", length=18, nullable=true)
      */
-    private $descricao;
+    private $documento;
+
+    /**
+     * @var Processo[]
+     * @ORM\ManyToMany(targetEntity="App\Entity\Processo", mappedBy="requerentes")
+     **/
+    protected $processos;
 
     /**
      * @return int
@@ -67,21 +71,39 @@ class Motivo
     /**
      * @return string
      */
-    public function getDescricao()
+    public function getDocumento()
     {
-        return $this->descricao;
+        return $this->documento;
     }
 
     /**
-     * @param string $descricao
+     * @param string $documento
      */
-    public function setDescricao(string $descricao)
+    public function setDocumento(string $documento)
     {
-        $this->descricao = $descricao;
+        $this->documento = $documento;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getProcessos()
+    {
+        return $this->processos;
+    }
+
+    /**
+     * @param mixed $processos
+     */
+    public function setProcessos($processos)
+    {
+        $this->processos = $processos;
+    }
+
 
     public function __toString()
     {
-        return $this->nome;
+        return $this->documento . ' - ' . $this->nome;
     }
+
 }

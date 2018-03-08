@@ -5,12 +5,10 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Class Motivo
- * @package App\Entity
  * @ORM\Entity()
- * @ORM\Table(name="motivo", schema="processo_juridico")
+ * @ORM\Table(name="comarca", schema="processo_juridico")
  */
-class Motivo
+class Comarca
 {
     /**
      * @ORM\Id()
@@ -21,16 +19,12 @@ class Motivo
     private $id;
 
     /**
-     * @ORM\Column(name="nome", type="string", length=80, nullable=false)
+     * @ORM\Column(name="nome", type="string", length=120, nullable=false)
      * @var string
      */
     private $nome;
 
-    /**
-     * @ORM\Column(name="descricao", type="string", length=255, nullable=false)
-     * @var string
-     */
-    private $descricao;
+    private $endereco;
 
     /**
      * @return int
@@ -62,22 +56,6 @@ class Motivo
     public function setNome(string $nome)
     {
         $this->nome = $nome;
-    }
-
-    /**
-     * @return string
-     */
-    public function getDescricao()
-    {
-        return $this->descricao;
-    }
-
-    /**
-     * @param string $descricao
-     */
-    public function setDescricao(string $descricao)
-    {
-        $this->descricao = $descricao;
     }
 
     public function __toString()

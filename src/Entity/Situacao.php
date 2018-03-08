@@ -5,12 +5,12 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Class Motivo
+ * Class Situacao
  * @package App\Entity
  * @ORM\Entity()
- * @ORM\Table(name="motivo", schema="processo_juridico")
+ * @ORM\Table(name="situacao", schema="processo_juridico")
  */
-class Motivo
+class Situacao
 {
     /**
      * @ORM\Id()
@@ -21,13 +21,13 @@ class Motivo
     private $id;
 
     /**
-     * @ORM\Column(name="nome", type="string", length=80, nullable=false)
+     * @ORM\Column(name="nome", type="string", length=35, nullable=false)
      * @var string
      */
     private $nome;
 
     /**
-     * @ORM\Column(name="descricao", type="string", length=255, nullable=false)
+     * @ORM\Column(name="descricao", type="string", length=120, nullable=false)
      * @var string
      */
     private $descricao;
