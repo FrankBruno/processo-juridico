@@ -16,35 +16,42 @@ easy_admin:
     brand_color: '#1ABC9C'
 
     menu:
-      - label: "Cadastros"
-        icon: 'list'
+      - { entity: 'Processo', label: 'Processos', icon: 'gavel' }
+      - label: "Comarcas"
+        icon: 'plus-square'
         children:
-          - { entity: 'Comarca', label: 'Comarcas', icon: 'tag'}
-          - { entity: 'Vara', label: 'Varas', icon: 'tag'}
+          - { entity: 'Comarca', label: 'Comarcas', icon: 'institution'}
+          - { entity: 'Vara', label: 'Varas', icon: 'home'}
+      - label: "Cadastros"
+        icon: 'plus-square'
+        children:
           - { entity: 'Uf', label: 'UFs', icon: 'globe' }
           - { entity: 'Classificacao', label: 'Classificações', icon: 'sort-amount-desc' }
-
+          - { entity: 'Motivo', label: 'Motivos', icon: 'commenting' }
 
   entities:
     Vara:
       class: App\Entity\Comarca\Vara
       label: "Varas"
+      list:
+        title: 'Lista de %%entity_label%%'
+        fields: ['comarca','nome']
 
     Comarca:
       class: App\Entity\Comarca
       label: "Comarcas"
+      list:
+        title: 'Lista de %%entity_label%%'
+        fields: ['uf','nome']
 
     Uf:
       class: App\Entity\Uf
       label: "UFs"
       list:
         title: 'Lista de %%entity_label%%'
-        help: 'The list view overrides the global help message'
         fields: ['sigla','nome']
       show:
         title: '%%entity_label%% (#%%entity_id%%) nome'
-      search:
-        fields: ['sigla', 'nome']
 
     Situacao:
       class: App\Entity\Situacao
