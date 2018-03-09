@@ -24,8 +24,8 @@ class Processo
     private $id;
 
     /**
-     * @ORM\Column(name="numero", type="integer", length=11, nullable=false)
-     * @var int
+     * @ORM\Column(name="numero", type="string", length=50, nullable=false)
+     * @var string
      */
     private $numero;
 
@@ -111,17 +111,17 @@ class Processo
     }
 
     /**
-     * @return int
+     * @return string
      */
-    public function getNumero():? int
+    public function getNumero():? string
     {
         return $this->numero;
     }
 
     /**
-     * @param int $numero
+     * @param string $numero
      */
-    public function setNumero(int $numero)
+    public function setNumero(string $numero): void
     {
         $this->numero = $numero;
     }

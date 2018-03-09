@@ -1,65 +1,71 @@
 easy_admin:
 
-    site_name: "<img src='https://png.icons8.com/metro/1600/batman-new.png' /> Processo <i>Jurídico</i>"
+  site_name: "<img src='https://png.icons8.com/metro/1600/batman-new.png' /> Processo <i>Jurídico</i>"
 
-    formats:
-        date:     'd/m/Y'
-        time:     'H:i'
-        datetime: 'd/m/Y H:i:s'
+  formats:
+    date:     'd/m/Y'
+    time:     'H:i'
+    datetime: 'd/m/Y H:i:s'
 
-    design:
+  assets:
+    favicon: 'bundles/easyadmin/img/batman.ico'
 
-        menu:
-            - label: "Comarca"
-              icon: 'list'
-              children:
-                  - {entity: 'Comarca', label: 'Comarcas', icon: 'tag'}
-                  - {entity: 'Vara', label: 'Varas', icon: 'tag'}
+  design:
 
-        color_scheme: 'dark'
-        brand_color: '#1ABC9C'
+    color_scheme: 'dark'
+    brand_color: '#1ABC9C'
 
-        assets:
-            favicon: 'bundles/easyadmin/img/batman.ico'
+    menu:
+      - label: "Cadastros"
+        icon: 'list'
+        children:
+          - { entity: 'Comarca', label: 'Comarcas', icon: 'tag'}
+          - { entity: 'Vara', label: 'Varas', icon: 'tag'}
+          - { entity: 'Uf', label: 'UFs', icon: 'globe' }
+          - { entity: 'Classificacao', label: 'Classificações', icon: 'sort-amount-desc' }
 
-    entities:
 
-        Vara:
-            class: App\Entity\Comarca\Vara
-            label: "Varas"
+  entities:
+    Vara:
+      class: App\Entity\Comarca\Vara
+      label: "Varas"
 
-        Comarca:
-            class: App\Entity\Comarca
-            label: "Comarcas"
+    Comarca:
+      class: App\Entity\Comarca
+      label: "Comarcas"
 
-        Uf:
-            class: App\Entity\Uf
-            label: "UFs"
-            list:
-                title: 'Lista de %%entity_label%%'
-                help: 'The list view overrides the global help message'
-                fields: ['sigla','nome']
-            show:
-                title: '%%entity_label%% (#%%entity_id%%) nome'
-            search:
-                fields: ['sigla', 'nome']
+    Uf:
+      class: App\Entity\Uf
+      label: "UFs"
+      list:
+        title: 'Lista de %%entity_label%%'
+        help: 'The list view overrides the global help message'
+        fields: ['sigla','nome']
+      show:
+        title: '%%entity_label%% (#%%entity_id%%) nome'
+      search:
+        fields: ['sigla', 'nome']
 
-        Situacao:
-            class: App\Entity\Situacao
-            label: "Situações"
+    Situacao:
+      class: App\Entity\Situacao
+      label: "Situações"
 
-        Processo:
-            class: App\Entity\Processo
-            label: "Processos"
+    Classificacao:
+      class: App\Entity\Classificacao
+      label: "Classificações"
 
-        Motivo:
-            class: App\Entity\Motivo
-            label: "Motivos"
+    Processo:
+      class: App\Entity\Processo
+      label: "Processos"
 
-        Pessoa:
-            class: App\Entity\Pessoa
-            label: "Pessoas"
+    Motivo:
+      class: App\Entity\Motivo
+      label: "Motivos"
 
-        TipoDocumento:
-            class: App\Entity\TipoDocumento
-            label: "Tipos de Documentos"
+    Pessoa:
+      class: App\Entity\Pessoa
+      label: "Pessoas"
+
+    TipoDocumento:
+      class: App\Entity\TipoDocumento
+      label: "Tipos de Documentos"
