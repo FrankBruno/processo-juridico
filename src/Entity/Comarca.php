@@ -2,7 +2,8 @@
 
 namespace App\Entity;
 
-use Doctrine\Common\Collections\Collection as Varas;
+use App\Entity\Comarca\Vara;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -35,10 +36,18 @@ class Comarca
     private $uf;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Comarca\Vara", mappedBy="comarca")
-     * @var Varas
+     * @ORM\OneToMany(targetEntity="App\Entity\Comarca\Vara", mappedBy="comarca", cascade={"persist","remove"}, orphanRemoval=true)
+     * @var Vara[]
      */
     private $varas;
+
+    /**
+     * Comarca constructor.
+     */
+    public function __construct()
+    {
+        $this->varas = new ArrayCollection();
+    }
 
     /**
      * @return int
@@ -89,17 +98,27 @@ class Comarca
     }
 
     /**
-     * @return Varas
+     * @return ArrayCollection|Vara[]
      */
-    public function getVaras():? Varas
+    public function getVaras()
     {
         return $this->varas;
     }
 
+    private function addVara(Vara $vara)
+    {
+        $this->varas->add($vara);
+    }
+
+    private function removeVara(Vara $vara)
+    {
+        $this->varas->remove($vara);
+    }
+
     /**
-     * @param Varas $varas
+     * @param ArrayCollection|Vara[] $varas
      */
-    public function setVaras(Varas $varas)
+    public function setVaras(ArrayCollection $varas)
     {
         $this->varas = $varas;
     }

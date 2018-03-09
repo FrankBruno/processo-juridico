@@ -28,8 +28,8 @@ class Vara
     private $nome;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Comarca", inversedBy="varas", cascade={"ALL"})
-     * @ORM\JoinColumn(name="comarca_id", referencedColumnName="id", nullable=false)
+     * @ORM\ManyToOne(targetEntity="App\Entity\Comarca", inversedBy="varas")
+     * @ORM\JoinColumn(name="comarca_id", referencedColumnName="id")
      * @var Comarca $comarca
      */
     private $comarca;
