@@ -1,11 +1,12 @@
 easy_admin:
 
-  site_name: "<img src='https://png.icons8.com/metro/1600/batman-new.png' /> Processo <i>Jurídico</i>"
+  site_name: '<i class="fa fa-balance-scale"></i> Processo Jurídico'
 
   formats:
     date:     'd/m/Y'
     time:     'H:i'
     datetime: 'd/m/Y H:i:s'
+    number: '%.2f'
 
   assets:
     favicon: 'bundles/easyadmin/img/batman.ico'
@@ -17,7 +18,7 @@ easy_admin:
 
     menu:
       - { entity: 'Processo', label: 'Processos', icon: 'gavel' }
-      - label: "Comarcas"
+      - label: "Comarcas/Varas"
         icon: 'plus-square'
         children:
           - { entity: 'Comarca', label: 'Comarcas', icon: 'institution'}
@@ -25,9 +26,11 @@ easy_admin:
       - label: "Cadastros"
         icon: 'plus-square'
         children:
-          - { entity: 'Uf', label: 'UFs', icon: 'globe' }
           - { entity: 'Classificacao', label: 'Classificações', icon: 'sort-amount-desc' }
-          - { entity: 'Motivo', label: 'Motivos', icon: 'commenting' }
+          - { entity: 'Motivo', label: 'Motivos', icon: 'question-circle' }
+          - { entity: 'Situacao', label: 'Situações', icon: 'stack-exchange' }
+          - { entity: 'TipoDocumento', label: 'Tipos de Documento', icon: 'address-card' }
+          - { entity: 'Uf', label: 'UFs', icon: 'globe' }
 
   entities:
     Vara:
@@ -42,7 +45,7 @@ easy_admin:
       label: "Comarcas"
       list:
         title: 'Lista de %%entity_label%%'
-        fields: ['uf','nome']
+        fields: ['uf','nome', 'varas']
 
     Uf:
       class: App\Entity\Uf
@@ -50,16 +53,23 @@ easy_admin:
       list:
         title: 'Lista de %%entity_label%%'
         fields: ['sigla','nome']
-      show:
-        title: '%%entity_label%% (#%%entity_id%%) nome'
+        sort: ['sigla', 'asc']
 
     Situacao:
       class: App\Entity\Situacao
       label: "Situações"
+      list:
+        title: 'Lista de %%entity_label%%'
+        fields: ['nome','descricao']
 
     Classificacao:
       class: App\Entity\Classificacao
       label: "Classificações"
+      list:
+        title: 'Lista de %%entity_label%%'
+        fields:
+          - 'nome'
+          - { property: 'provisao', label: 'Provisão' }
 
     Processo:
       class: App\Entity\Processo
@@ -68,6 +78,9 @@ easy_admin:
     Motivo:
       class: App\Entity\Motivo
       label: "Motivos"
+      list:
+        title: 'Lista de %%entity_label%%'
+        fields: ['nome', 'descricao']
 
     Pessoa:
       class: App\Entity\Pessoa
@@ -76,3 +89,6 @@ easy_admin:
     TipoDocumento:
       class: App\Entity\TipoDocumento
       label: "Tipos de Documentos"
+      list:
+        title: 'Lista de %%entity_label%%'
+        fields: ['nome']
