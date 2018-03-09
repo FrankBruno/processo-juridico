@@ -8,6 +8,13 @@ easy_admin:
     datetime: 'd/m/Y H:i:s'
     number: '%.2f'
 
+  list:
+    title: 'Lista de %%entity_label%%'
+    actions:
+      - { name: 'show', label: '', icon: 'search' }
+      - { name: 'edit', label: '', icon: 'edit' }
+      - { name: 'delete', label: '', icon: 'trash' }
+
   assets:
     favicon: 'bundles/easyadmin/img/batman.ico'
 
@@ -37,21 +44,18 @@ easy_admin:
       class: App\Entity\Comarca\Vara
       label: "Varas"
       list:
-        title: 'Lista de %%entity_label%%'
         fields: ['comarca','nome']
 
     Comarca:
       class: App\Entity\Comarca
       label: "Comarcas"
       list:
-        title: 'Lista de %%entity_label%%'
         fields: ['uf','nome', 'varas']
 
     Uf:
       class: App\Entity\Uf
       label: "UFs"
       list:
-        title: 'Lista de %%entity_label%%'
         fields: ['sigla','nome']
         sort: ['sigla', 'asc']
 
@@ -59,14 +63,12 @@ easy_admin:
       class: App\Entity\Situacao
       label: "Situações"
       list:
-        title: 'Lista de %%entity_label%%'
         fields: ['nome','descricao']
 
     Classificacao:
       class: App\Entity\Classificacao
       label: "Classificações"
       list:
-        title: 'Lista de %%entity_label%%'
         fields:
           - 'nome'
           - { property: 'provisao', label: 'Provisão' }
@@ -79,7 +81,6 @@ easy_admin:
       class: App\Entity\Motivo
       label: "Motivos"
       list:
-        title: 'Lista de %%entity_label%%'
         fields: ['nome', 'descricao']
 
     Pessoa:
@@ -90,5 +91,4 @@ easy_admin:
       class: App\Entity\TipoDocumento
       label: "Tipos de Documentos"
       list:
-        title: 'Lista de %%entity_label%%'
         fields: ['nome']
