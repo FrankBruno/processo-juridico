@@ -2,11 +2,15 @@
 
 namespace App\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
+use App\Entity\Comarca\Vara;
+use Doctrine\Common\Collections\ArrayCollection as Motivos;
 use Doctrine\ORM\Mapping as ORM;
 
+
 /**
- * @ORM\Entity
+ * Class Processo
+ * @package App\Entity
+ * @ORM\Entity()
  * @ORM\Table(name="processo", schema="processo_juridico")
  */
 class Processo
@@ -26,18 +30,26 @@ class Processo
     private $numero;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Motivo")
-     * @ORM\JoinColumn(name="motivo_id", referencedColumnName="id", nullable=false)
-     * @var Motivo
+     * @ORM\ManyToMany(targetEntity="App\Entity\Motivo")
+     * @ORM\JoinTable(
+     *     name="processo_motivo",
+     *     joinColumns={
+     *          @ORM\JoinColumn(name="processo_id", referencedColumnName="id")
+     *     },
+     *     inverseJoinColumns={
+     *          @ORM\JoinColumn(name="motivo_id", referencedColumnName="id")
+     *     }
+     * )
+     * @var Motivos
      */
-    private $motivo;
+    private $motivos;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Comarca")
-     * @ORM\JoinColumn(name="comarca_id", referencedColumnName="id", nullable=false)
-     * @var Comarca
+     * @ORM\ManyToOne(targetEntity="App\Entity\Comarca\Vara")
+     * @ORM\JoinColumn(name="vara_id", referencedColumnName="id", nullable=false)
+     * @var Vara
      */
-    private $comarca;
+    private $vara;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Situacao")
@@ -45,18 +57,6 @@ class Processo
      * @var Situacao
      */
     private $situacao;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Filial")
-     * @ORM\JoinColumn(name="filial_id", referencedColumnName="id", nullable=true)
-     * @var Filial
-     */
-    private $filial;
-
-    /**
-     * @var
-     */
-    private $fabricante;
 
     /**
      * @var
@@ -88,28 +88,16 @@ class Processo
      */
     private $recebidoEm;
 
-    /**
-     * @ORM\Column(name="enviado_nuvem", type="boolean", nullable=true)
-     * @var bool
-     */
+
     private $enviadoNuvem = false;
 
-    /**
-     * @var Requerente[]
-     * @ORM\ManyToMany(targetEntity="App\Entity\Requerente", inversedBy="processos")
-     * @ORM\JoinTable(name="processo_requerente")
-     */
-    private $requerentes;
 
-    public function __construct()
-    {
-        $this->requerentes =  new ArrayCollection();
-    }
+    private $requerentes;
 
     /**
      * @return int
      */
-    public function getId()
+    public function getId():? int
     {
         return $this->id;
     }
@@ -125,7 +113,7 @@ class Processo
     /**
      * @return int
      */
-    public function getNumero()
+    public function getNumero():? int
     {
         return $this->numero;
     }
@@ -141,39 +129,39 @@ class Processo
     /**
      * @return mixed
      */
-    public function getMotivo()
+    public function getMotivos()
     {
-        return $this->motivo;
+        return $this->motivos;
     }
 
     /**
-     * @param mixed $motivo
+     * @param Motivos $motivos
      */
-    public function setMotivo($motivo)
+    public function setMotivos(Motivos $motivos)
     {
-        $this->motivo = $motivo;
+        $this->motivos = $motivos;
     }
 
     /**
-     * @return Comarca
+     * @return Vara
      */
-    public function getComarca()
+    public function getVara():? Vara
     {
-        return $this->comarca;
+        return $this->vara;
     }
 
     /**
-     * @param Comarca $comarca
+     * @param Vara $vara
      */
-    public function setComarca(Comarca $comarca)
+    public function setVara(Vara $vara)
     {
-        $this->comarca = $comarca;
+        $this->vara = $vara;
     }
 
     /**
      * @return Situacao
      */
-    public function getSituacao()
+    public function getSituacao():? Situacao
     {
         return $this->situacao;
     }
@@ -187,55 +175,10 @@ class Processo
     }
 
     /**
-     * @return Filial
+     * @return string
      */
-    public function getFilial()
-    {
-        return $this->filial;
-    }
-
-    /**
-     * @param Filial $filial
-     */
-    public function setFilial(Filial $filial)
-    {
-        $this->filial = $filial;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getEnviadoNuvem()
-    {
-        return $this->enviadoNuvem;
-    }
-
-    /**
-     * @param mixed $enviadoNuvem
-     */
-    public function setEnviadoNuvem($enviadoNuvem)
-    {
-        $this->enviadoNuvem = $enviadoNuvem;
-    }
-
-    /**
-     * @return Requerente[]|ArrayCollection
-     */
-    public function getRequerentes()
-    {
-        return $this->requerentes;
-    }
-
-    /**
-     * @param Requerente[]|ArrayCollection $requerentes
-     */
-    public function setRequerentes($requerentes)
-    {
-        $this->requerentes = $requerentes;
-    }
-
     public function __toString()
     {
-        return (string) $this->numero;
+        return (string)$this->numero;
     }
 }

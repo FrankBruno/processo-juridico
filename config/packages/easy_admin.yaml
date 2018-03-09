@@ -8,6 +8,37 @@ easy_admin:
 
         assets:
             favicon: 'bundles/easyadmin/img/batman.ico'
+
     entities:
+
+        Vara:
+            class: App\Entity\Comarca\Vara
+            label: "Varas"
+
+        Comarca:
+            class: App\Entity\Comarca
+            label: "Comarcas"
+
+        Uf:
+            class: App\Entity\Uf
+            label: "UFs"
+
+        Situacao:
+            class: App\Entity\Situacao
+            label: "Situações"
+
+        Processo:
+            class: App\Entity\Processo
+            label: "Processos"
+
         Motivo:
             class: App\Entity\Motivo
+            label: "Motivos"
+
+        Pessoa:
+            class: App\Entity\Pessoa
+            label: "Pessoas"
+
+        TipoDocumento:
+            class: App\Entity\TipoDocumento
+            label: "Tipos de Documentos"

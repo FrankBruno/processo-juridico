@@ -1,36 +1,31 @@
 <?php
 
+
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Class Situacao
+ * Class TipoDocumento
  * @package App\Entity
- * @ORM\Entity()
- * @ORM\Table(name="situacao", schema="processo_juridico")
+ * @ORM\Entity
+ * @ORM\Table(name="tipo_documento", schema="processo_juridico")
  */
-class Situacao
+class TipoDocumento
 {
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue(strategy="AUTO")
-     * @ORM\Column(name="id", type="integer", length=11, nullable=false)
+     * @ORM\Column(name="id", type="integer", length=1, nullable=false)
      * @var int
      */
     private $id;
 
     /**
-     * @ORM\Column(name="nome", type="string", length=100, nullable=false)
+     * @ORM\Column(name="nome", type="string", length=5, nullable=false)
      * @var string
      */
     private $nome;
-
-    /**
-     * @ORM\Column(name="descricao", type="string", length=200, nullable=false)
-     * @var string
-     */
-    private $descricao;
 
     /**
      * @return int
@@ -67,21 +62,8 @@ class Situacao
     /**
      * @return string
      */
-    public function getDescricao():? string
-    {
-        return $this->descricao;
-    }
-
-    /**
-     * @param string $descricao
-     */
-    public function setDescricao(string $descricao)
-    {
-        $this->descricao = $descricao;
-    }
-
     public function __toString()
     {
-        return $this->nome;
+        return (string)$this->nome;
     }
 }

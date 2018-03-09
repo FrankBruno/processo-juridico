@@ -1,12 +1,13 @@
 <?php
 
-
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity
+ * Class Uf
+ * @package App\Entity
+ * @ORM\Entity()
  * @ORM\Table(name="uf", schema="processo_juridico")
  */
 class Uf
@@ -26,23 +27,23 @@ class Uf
     private $sigla;
 
     /**
-     * @ORM\Column(name="nome", type="string", length=80, nullable=false)
+     * @ORM\Column(name="nome", type="string", length=50, nullable=false)
      * @var string
      */
     private $nome;
 
     /**
-     * @return mixed
+     * @return int
      */
-    public function getId()
+    public function getId():? int
     {
         return $this->id;
     }
 
     /**
-     * @param mixed $id
+     * @param int $id
      */
-    public function setId($id)
+    public function setId(int $id)
     {
         $this->id = $id;
     }
@@ -50,7 +51,7 @@ class Uf
     /**
      * @return string
      */
-    public function getSigla()
+    public function getSigla():? string
     {
         return $this->sigla;
     }
@@ -64,18 +65,26 @@ class Uf
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getNome()
+    public function getNome():? string
     {
         return $this->nome;
     }
 
     /**
-     * @param mixed $nome
+     * @param string $nome
      */
-    public function setNome($nome)
+    public function setNome(string $nome)
     {
         $this->nome = $nome;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return (string)$this->sigla . ' - ' . $this->nome;
     }
 }

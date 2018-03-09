@@ -5,10 +5,12 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity
- * @ORM\Table(name="fabricante", schema="processo_juridico")
+ * Class Pessoa
+ * @package App\Entity
+ * @ORM\Entity()
+ * @ORM\Table(name="pessoa", schema="processo_juridico")
  */
-class Fabricante
+class Pessoa
 {
     /**
      * @ORM\Id()
@@ -25,7 +27,14 @@ class Fabricante
     private $nome;
 
     /**
-     * @ORM\Column(name="documento", type="string", length=18, nullable=true)
+     * @ORM\ManyToOne(targetEntity="App\Entity\TipoDocumento")
+     * @ORM\JoinColumn(name="tipo_documento_id", referencedColumnName="id", nullable=false)
+     * @var TipoDocumento
+     */
+    private $tipoDocumento;
+
+    /**
+     * @ORM\Column(type="string", length=18, nullable=true, unique=true)
      * @var string
      */
     private $documento;
@@ -33,7 +42,7 @@ class Fabricante
     /**
      * @return int
      */
-    public function getId()
+    public function getId():? int
     {
         return $this->id;
     }
@@ -49,7 +58,7 @@ class Fabricante
     /**
      * @return string
      */
-    public function getNome()
+    public function getNome():? string
     {
         return $this->nome;
     }
@@ -63,9 +72,25 @@ class Fabricante
     }
 
     /**
+     * @return TipoDocumento
+     */
+    public function getTipoDocumento():? TipoDocumento
+    {
+        return $this->tipoDocumento;
+    }
+
+    /**
+     * @param mixed $tipoDocumento
+     */
+    public function setTipoDocumento($tipoDocumento)
+    {
+        $this->tipoDocumento = $tipoDocumento;
+    }
+
+    /**
      * @return string
      */
-    public function getDocumento()
+    public function getDocumento():? string
     {
         return $this->documento;
     }
@@ -76,5 +101,13 @@ class Fabricante
     public function setDocumento(string $documento)
     {
         $this->documento = $documento;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return (string)$this->tipoDocumento . ': ' . $this->documento . ' - ' . $this->nome;
     }
 }
