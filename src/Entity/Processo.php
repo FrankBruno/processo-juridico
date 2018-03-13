@@ -158,14 +158,8 @@ class Processo
      */
     private $enviadoNuvem = false;
 
-    /**
-     * @var UsuarioRepository
-     */
-    private $usuarioRepository;
-
     public function __construct()
     {
-        //$this->usuarioCriacao = $this->usuarioRepository->find(Usuario::ADMIN);
         $this->criadoEm = new \DateTime();
     }
 
