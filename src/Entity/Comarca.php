@@ -52,7 +52,7 @@ class Comarca
     /**
      * @return int
      */
-    public function getId():? int
+    public function getId(): ? int
     {
         return $this->id;
     }
@@ -68,7 +68,7 @@ class Comarca
     /**
      * @return string
      */
-    public function getNome():? string
+    public function getNome(): ? string
     {
         return $this->nome;
     }
@@ -84,7 +84,7 @@ class Comarca
     /**
      * @return Uf
      */
-    public function getUf():? Uf
+    public function getUf(): ? Uf
     {
         return $this->uf;
     }
@@ -105,16 +105,6 @@ class Comarca
         return $this->varas;
     }
 
-    private function addVara(Vara $vara)
-    {
-        $this->varas->add($vara);
-    }
-
-    private function removeVara(Vara $vara)
-    {
-        $this->varas->remove($vara);
-    }
-
     /**
      * @param ArrayCollection|Vara[] $varas
      */
@@ -126,5 +116,15 @@ class Comarca
     public function __toString()
     {
         return (string)$this->nome;
+    }
+
+    private function addVara(Vara $vara)
+    {
+        $this->varas->add($vara);
+    }
+
+    private function removeVara(Vara $vara)
+    {
+        $this->varas->remove($vara);
     }
 }

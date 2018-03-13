@@ -30,7 +30,7 @@ class TipoDocumento
     /**
      * @return int
      */
-    public function getId():? int
+    public function getId(): ? int
     {
         return $this->id;
     }
@@ -46,7 +46,7 @@ class TipoDocumento
     /**
      * @return string
      */
-    public function getNome():? string
+    public function getNome(): ? string
     {
         return $this->nome;
     }

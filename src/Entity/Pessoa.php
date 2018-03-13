@@ -42,7 +42,7 @@ class Pessoa
     /**
      * @return int
      */
-    public function getId():? int
+    public function getId(): ? int
     {
         return $this->id;
     }
@@ -58,7 +58,7 @@ class Pessoa
     /**
      * @return string
      */
-    public function getNome():? string
+    public function getNome(): ? string
     {
         return $this->nome;
     }
@@ -74,7 +74,7 @@ class Pessoa
     /**
      * @return TipoDocumento
      */
-    public function getTipoDocumento():? TipoDocumento
+    public function getTipoDocumento(): ? TipoDocumento
     {
         return $this->tipoDocumento;
     }
@@ -90,7 +90,7 @@ class Pessoa
     /**
      * @return string
      */
-    public function getDocumento():? string
+    public function getDocumento(): ? string
     {
         return $this->documento;
     }
@@ -108,6 +108,6 @@ class Pessoa
      */
     public function __toString()
     {
-        return (string)$this->tipoDocumento . ': ' . $this->documento . ' - ' . $this->nome;
+        return (string)$this->documento . ' - ' . $this->nome;
     }
 }

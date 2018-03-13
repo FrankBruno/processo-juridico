@@ -35,7 +35,7 @@ class Uf
     /**
      * @return int
      */
-    public function getId():? int
+    public function getId(): ? int
     {
         return $this->id;
     }
@@ -51,7 +51,7 @@ class Uf
     /**
      * @return string
      */
-    public function getSigla():? string
+    public function getSigla(): ? string
     {
         return $this->sigla;
     }
@@ -67,7 +67,7 @@ class Uf
     /**
      * @return string
      */
-    public function getNome():? string
+    public function getNome(): ? string
     {
         return $this->nome;
     }

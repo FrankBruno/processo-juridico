@@ -35,7 +35,7 @@ class Motivo
     /**
      * @return int
      */
-    public function getId():? int
+    public function getId(): ? int
     {
         return $this->id;
     }
@@ -51,7 +51,7 @@ class Motivo
     /**
      * @return string
      */
-    public function getNome():? string
+    public function getNome(): ? string
     {
         return $this->nome;
     }
@@ -67,7 +67,7 @@ class Motivo
     /**
      * @return string
      */
-    public function getDescricao():? string
+    public function getDescricao(): ? string
     {
         return $this->descricao;
     }

@@ -19,25 +19,24 @@ easy_admin:
     favicon: 'bundles/easyadmin/img/batman.ico'
 
   design:
+    form_theme: 'vertical'
 
     color_scheme: 'dark'
-    brand_color: '#1ABC9C'
+    brand_color: '#e01d25'
 
     menu:
-      - { entity: 'Processo', label: 'Processos', icon: 'gavel' }
-      - label: "Comarcas/Varas"
+      - { entity: 'Processo', label: 'Processos', icon: 'gavel', default: true }
+      - label: "Cadastros"
         icon: 'plus-square'
         children:
           - { entity: 'Comarca', label: 'Comarcas', icon: 'institution'}
           - { entity: 'Vara', label: 'Varas', icon: 'home'}
-      - label: "Cadastros"
-        icon: 'plus-square'
-        children:
           - { entity: 'Classificacao', label: 'Classificações', icon: 'sort-amount-desc' }
           - { entity: 'Motivo', label: 'Motivos', icon: 'question-circle' }
           - { entity: 'Situacao', label: 'Situações', icon: 'stack-exchange' }
           - { entity: 'TipoDocumento', label: 'Tipos de Documento', icon: 'address-card' }
           - { entity: 'Uf', label: 'UFs', icon: 'globe' }
+          - { entity: 'Pessoa', label: 'Pessoas', icon: 'users'}
 
   entities:
     Vara:
@@ -86,6 +85,8 @@ easy_admin:
     Pessoa:
       class: App\Entity\Pessoa
       label: "Pessoas"
+      list:
+        fields: ['tipo_documento', 'documento', 'nome']
 
     TipoDocumento:
       class: App\Entity\TipoDocumento
