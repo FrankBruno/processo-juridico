@@ -6,7 +6,7 @@ easy_admin:
     date:     'd/m/Y'
     time:     'H:i'
     datetime: 'd/m/Y H:i:s'
-    number: '%.2f'
+    number: 'R$ %.2f'
 
   list:
     title: 'Lista de %%entity_label%%'
@@ -15,14 +15,18 @@ easy_admin:
       - { name: 'edit', label: '', icon: 'edit' }
       - { name: 'delete', label: '', icon: 'trash' }
 
-  assets:
-    favicon: 'bundles/easyadmin/img/batman.ico'
-
   design:
+
     form_theme: 'vertical'
 
     color_scheme: 'dark'
+
     brand_color: '#e01d25'
+
+    assets:
+      favicon:
+        path: 'bundles/easyadmin/img/balance.png'
+        mime_type: 'image/png'
 
     menu:
       - { entity: 'Processo', label: 'Processos', icon: 'gavel', default: true }
@@ -36,9 +40,47 @@ easy_admin:
           - { entity: 'Situacao', label: 'Situações', icon: 'stack-exchange' }
           - { entity: 'TipoDocumento', label: 'Tipos de Documento', icon: 'address-card' }
           - { entity: 'Uf', label: 'UFs', icon: 'globe' }
-          - { entity: 'Pessoa', label: 'Pessoas', icon: 'users'}
+          - { entity: 'Pessoa', label: 'Pessoas', icon: 'user-circle'}
+          - { entity: 'Filial', label: 'Filiais', icon: 'sitemap'}
+          - { entity: 'Usuario', label: 'Usuários', icon: 'user'}
 
   entities:
+
+    Processo:
+      class: App\Entity\Processo
+      label: "Processos"
+      show:
+        max_results: 20
+
+      list:
+        max_results: 30
+        fields:
+          - { property: 'codigo', label: 'Código' }
+          - { property: 'vara', label: 'Vara' }
+          - { property: 'requerentes', label: 'Requerentes' }
+          - { property: 'requeridos', label: 'Requeridos' }
+          - { property: 'situacao', label: 'Situação' }
+          - { property: 'valorCausa', label: 'Valor da causa'}
+          - { property: 'criadoEm', label: 'Data de criação', format: 'd/m/Y' }
+          - { property: 'filial.numero', label: 'Filial' }
+          - { property: 'isEnviadoNuvem', label: 'Nuvem', type: 'boolean' }
+
+        sort: ['criadoEm', 'desc']
+
+      form:
+        fields:
+          - { type: 'group', css_class: 'col-sm-12', label: 'Processo' }
+          - { property: 'codigo', label: 'Código' }
+          - { property: 'vara', label: 'Vara' }
+          - { property: 'valorCausa', label: 'Valor da Causa', type: 'money', type_options: { currency: 'BRL' }  }
+          - { type: 'group', css_class: 'col-sm-12', label: 'Envolvidos' }
+          - { property: 'requerentes', label: 'Requerentes' }
+          - { property: 'requeridos', label: 'Requeridos' }
+          - { type: 'group', css_class: 'col-sm-12', label: 'Adicionais' }
+          - { property: 'filial', label: 'Filial' }
+          - { property: 'situacao', label: 'Situação' }
+          - { property: 'usuarioCriacao', label: 'Usuário' }
+
     Vara:
       class: App\Entity\Comarca\Vara
       label: "Varas"
@@ -72,10 +114,6 @@ easy_admin:
           - 'nome'
           - { property: 'provisao', label: 'Provisão' }
 
-    Processo:
-      class: App\Entity\Processo
-      label: "Processos"
-
     Motivo:
       class: App\Entity\Motivo
       label: "Motivos"
@@ -93,3 +131,13 @@ easy_admin:
       label: "Tipos de Documentos"
       list:
         fields: ['nome']
+
+    Usuario:
+      class: App\Entity\Usuario
+      label: "Usuários"
+      list:
+        fields: ['login', 'nome', 'ativo']
+
+    Filial:
+      class: App\Entity\Filial
+      label: "Filial"

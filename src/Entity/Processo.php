@@ -26,10 +26,10 @@ class Processo
     private $id;
 
     /**
-     * @ORM\Column(name="numero", type="string", length=50, nullable=false)
+     * @ORM\Column(name="codigo", type="string", length=50, nullable=false)
      * @var string
      */
-    private $numero;
+    private $codigo;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Comarca\Vara")
@@ -37,6 +37,13 @@ class Processo
      * @var Vara
      */
     private $vara;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Situacao")
+     * @ORM\JoinColumn(name="situacao_id", referencedColumnName="id", nullable=false)
+     * @var Situacao
+     */
+    private $situacao;
 
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Motivo")
@@ -52,13 +59,6 @@ class Processo
      * @var Motivos
      */
     private $motivos;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Situacao")
-     * @ORM\JoinColumn(name="situacao_id", referencedColumnName="id", nullable=false)
-     * @var Situacao
-     */
-    private $situacao;
 
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Pessoa")
@@ -91,38 +91,83 @@ class Processo
     private $requeridos;
 
     /**
-     * @var
+     * @ORM\ManyToOne(targetEntity="App\Entity\Usuario")
+     * @ORM\JoinColumn(name="usuario_id", referencedColumnName="id", nullable=false)
+     * @var Usuario
+     */
+    private $usuarioCriacao;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Filial")
+     * @ORM\JoinColumn(name="filial_id", referencedColumnName="id", nullable=true)
+     * @var Filial
+     */
+    private $filial;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Fabricante")
+     * @ORM\JoinColumn(name="fabricante_id", referencedColumnName="id", nullable=true)
+     * @var Fabricante
+     */
+    private $fabricante;
+
+    /**
+     * @ORM\Column(name="valor_causa", type="decimal", precision=11, scale=2, nullable=false)
+     * @var float
      */
     private $valorCausa;
 
     /**
-     * @var
+     * @ORM\Column(name="valor_sentenca", type="decimal" ,precision=11, scale=2, nullable=true)
+     * @var float
      */
     private $valorSentenca;
 
     /**
-     * @var
+     * @ORM\Column(name="valor_acordo", type="decimal", precision=11, scale=2, nullable=true)
+     * @var float
      */
     private $valorAcordo;
 
     /**
-     * @var
+     * @ORM\Column(name="criado_em", type="date", nullable=false)
+     * @var \DateTime
+     */
+    private $criadoEm;
+
+    /**
+     * @ORM\Column(name="ajuizado_em", type="date", nullable=true)
+     * @var \DateTime
      */
     private $ajuizadoEm;
 
     /**
-     * @var
+     * @ORM\Column(name="recebido_em", type="date", nullable=true)
+     * @var \DateTime
+     */
+    private $recebidoEm;
+
+    /**
+     * @ORM\Column(name="arquivado_em", type="date", nullable=true)
+     * @var \DateTime
      */
     private $arquivadoEm;
 
     /**
-     * @var
+     * @var bool
      */
-    private $recebidoEm;
-
-
     private $enviadoNuvem = false;
 
+    /**
+     * @var UsuarioRepository
+     */
+    private $usuarioRepository;
+
+    public function __construct()
+    {
+        //$this->usuarioCriacao = $this->usuarioRepository->find(Usuario::ADMIN);
+        $this->criadoEm = new \DateTime();
+    }
 
     /**
      * @return int
@@ -143,17 +188,17 @@ class Processo
     /**
      * @return string
      */
-    public function getNumero(): ? string
+    public function getCodigo(): ? string
     {
-        return $this->numero;
+        return $this->codigo;
     }
 
     /**
-     * @param string $numero
+     * @param string $codigo
      */
-    public function setNumero(string $numero): void
+    public function setCodigo(string $codigo): void
     {
-        $this->numero = $numero;
+        $this->codigo = $codigo;
     }
 
     /**
@@ -237,10 +282,188 @@ class Processo
     }
 
     /**
+     * @return Filial
+     */
+    public function getFilial(): ? Filial
+    {
+        return $this->filial;
+    }
+
+    /**
+     * @param Filial $filial
+     */
+    public function setFilial(Filial $filial)
+    {
+        $this->filial = $filial;
+    }
+
+    /**
+     * @return Fabricante
+     */
+    public function getFabricante(): ? Fabricante
+    {
+        return $this->fabricante;
+    }
+
+    /**
+     * @param Fabricante $fabricante
+     */
+    public function setFabricante(Fabricante $fabricante)
+    {
+        $this->fabricante = $fabricante;
+    }
+
+
+
+    /**
+     * @return float
+     */
+    public function getValorCausa(): ? float
+    {
+        return $this->valorCausa;
+    }
+
+    /**
+     * @param float $valorCausa
+     */
+    public function setValorCausa(float $valorCausa)
+    {
+        $this->valorCausa = $valorCausa;
+    }
+
+    /**
+     * @return float
+     */
+    public function getValorSentenca(): ? float
+    {
+        return $this->valorSentenca;
+    }
+
+    /**
+     * @param float $valorSentenca
+     */
+    public function setValorSentenca(float $valorSentenca)
+    {
+        $this->valorSentenca = $valorSentenca;
+    }
+
+    /**
+     * @return float
+     */
+    public function getValorAcordo(): ? float
+    {
+        return $this->valorAcordo;
+    }
+
+    /**
+     * @param float $valorAcordo
+     */
+    public function setValorAcordo(float $valorAcordo)
+    {
+        $this->valorAcordo = $valorAcordo;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getCriadoEm(): ? \DateTime
+    {
+        return $this->criadoEm;
+    }
+
+    /**
+     * @param \DateTime $criadoEm
+     */
+    public function setCriadoEm(\DateTime $criadoEm)
+    {
+        $this->criadoEm = $criadoEm;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getAjuizadoEm(): ? \DateTime
+    {
+        return $this->ajuizadoEm;
+    }
+
+    /**
+     * @param \DateTime $ajuizadoEm
+     */
+    public function setAjuizadoEm(\DateTime $ajuizadoEm)
+    {
+        $this->ajuizadoEm = $ajuizadoEm;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getRecebidoEm(): ? \DateTime
+    {
+        return $this->recebidoEm;
+    }
+
+    /**
+     * @param \DateTime $recebidoEm
+     */
+    public function setRecebidoEm(\DateTime $recebidoEm)
+    {
+        $this->recebidoEm = $recebidoEm;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getArquivadoEm(): ? \DateTime
+    {
+        return $this->arquivadoEm;
+    }
+
+    /**
+     * @param \DateTime $arquivadoEm
+     */
+    public function setArquivadoEm(\DateTime $arquivadoEm)
+    {
+        $this->arquivadoEm = $arquivadoEm;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isEnviadoNuvem(): ? bool
+    {
+        return $this->enviadoNuvem;
+    }
+
+    /**
+     * @param bool $enviadoNuvem
+     */
+    public function setEnviadoNuvem(bool $enviadoNuvem)
+    {
+        $this->enviadoNuvem = $enviadoNuvem;
+    }
+
+    /**
+     * @return Usuario
+     */
+    public function getUsuarioCriacao(): ? Usuario
+    {
+        return $this->usuarioCriacao;
+    }
+
+    /**
+     * @param Usuario $usuarioCriacao
+     */
+    public function setUsuarioCriacao(Usuario $usuarioCriacao)
+    {
+        $this->usuarioCriacao = $usuarioCriacao;
+    }
+
+    /**
      * @return string
      */
     public function __toString()
     {
-        return (string)$this->numero;
+        return (string)$this->codigo;
     }
 }
