@@ -248,6 +248,20 @@ class Processo
     }
 
     /**
+     * @return string
+     */
+    public function getListaRequerentes()
+    {
+        $lista = '';
+
+        $this->requerentes->map(function(Pessoa $requerente) use (&$lista) {
+            $lista .= $requerente->getDocumento() . ' - '. ($requerente->getNomeTratamento() ?? $requerente->getNome()) . ', ';
+        });
+
+        return trim($lista, ', ');
+    }
+
+    /**
      * @param Motivos $requerentes
      */
     public function setRequerentes(Requerentes $requerentes): void
@@ -274,7 +288,7 @@ class Processo
     /**
      * @return Pessoa
      */
-    public function getFilial(): Pessoa
+    public function getFilial(): ? Pessoa
     {
         return $this->filial;
     }

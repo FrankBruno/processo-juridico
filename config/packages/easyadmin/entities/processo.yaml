@@ -10,7 +10,7 @@ easy_admin:
         fields:
           - { property: 'codigo', label: 'Código' }
           - { property: 'vara', label: 'Vara' }
-          - { property: 'requerentes', label: 'Requerentes', type: 'array' }
+          - { property: 'getListaRequerentes', label: 'Requerentes', type: 'array' }
           - { property: 'requeridos', label: 'Requeridos' }
           - { property: 'situacao', label: 'Situação' }
           - { property: 'valorCausa', label: 'Valor da causa'}
@@ -25,6 +25,7 @@ easy_admin:
           - { type: 'group', css_class: 'col-sm-12', label: 'Processo' }
           - { property: 'codigo', label: 'Código' }
           - { property: 'vara', label: 'Vara' }
+          - { property: 'motivos', label: 'Motivos' }
           - { property: 'valorCausa', label: 'Valor da Causa', type: 'money', type_options: { currency: 'BRL' }  }
           - { type: 'group', css_class: 'col-sm-12', label: 'Envolvidos' }
           - { property: 'requerentes', label: 'Requerentes' }
