@@ -1,0 +1,34 @@
+easy_admin:
+  entities:
+    Processo:
+      class: App\Entity\Processo
+      label: "Processos"
+      show:
+        max_results: 20
+      list:
+        max_results: 30
+        fields:
+          - { property: 'codigo', label: 'Código' }
+          - { property: 'vara', label: 'Vara' }
+          - { property: 'requerentes', label: 'Requerentes', type: 'array' }
+          - { property: 'requeridos', label: 'Requeridos' }
+          - { property: 'situacao', label: 'Situação' }
+          - { property: 'valorCausa', label: 'Valor da causa'}
+          - { property: 'criadoEm', label: 'Data de crição', format: 'd/m/Y' }
+          - { property: 'filialNomeTratamento', label: 'Filial' }
+          - { property: 'isEnviadoNuvem', label: 'Nuvem', type: 'boolean' }
+
+      sort: ['criadoEm', 'desc']
+
+      form:
+        fields:
+          - { type: 'group', css_class: 'col-sm-12', label: 'Processo' }
+          - { property: 'codigo', label: 'Código' }
+          - { property: 'vara', label: 'Vara' }
+          - { property: 'valorCausa', label: 'Valor da Causa', type: 'money', type_options: { currency: 'BRL' }  }
+          - { type: 'group', css_class: 'col-sm-12', label: 'Envolvidos' }
+          - { property: 'requerentes', label: 'Requerentes' }
+          - { property: 'requeridos', label: 'Requeridos' }
+          - { type: 'group', css_class: 'col-sm-12', label: 'Adicionais' }
+          - { property: 'filial', label: 'Filial' }
+          - { property: 'situacao', label: 'Situação' }

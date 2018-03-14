@@ -1,0 +1,7 @@
+easy_admin:
+  entities:
+    Vara:
+      class: App\Entity\Comarca\Vara
+      label: "Varas"
+      list:
+        fields: ['comarca','nome']

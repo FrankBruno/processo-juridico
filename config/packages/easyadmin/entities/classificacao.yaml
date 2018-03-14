@@ -1,0 +1,17 @@
+easy_admin:
+  entities:
+    Classificacao:
+      class: App\Entity\Classificacao
+      label: Classificações'
+      list:
+        fields:
+            - 'nome'
+            - { property: 'provisao', label: 'Provisão' }
+      show:
+        fields:
+            - 'nome'
+            - { property: 'provisao', label: 'Provisão' }
+      edit:
+        fields:
+            - 'nome'
+            - { property: 'provisao', label: 'Provisão' }

@@ -1,0 +1,7 @@
+easy_admin:
+  entities:
+    Comarca:
+      class: App\Entity\Comarca
+      label: "Comarcas"
+      list:
+        fields: ['uf','nome', 'varas']

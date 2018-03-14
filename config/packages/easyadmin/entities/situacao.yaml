@@ -1,0 +1,15 @@
+easy_admin:
+  entities:
+    Situacao:
+      class: App\Entity\Situacao
+      label: "Situações"
+      list:
+        fields: ['nome','descricao']
+      show:
+        fields:
+          - 'nome'
+          - { property: 'descricao', label: 'Descrição' }
+      edit:
+        fields:
+          - 'nome'
+          - { property: 'descricao', label: 'Descrição' }

@@ -34,10 +34,16 @@ class Pessoa
     private $tipoDocumento;
 
     /**
-     * @ORM\Column(type="string", length=18, nullable=true, unique=true)
+     * @ORM\Column(type="string", length=18, nullable=false, unique=true)
      * @var string
      */
     private $documento;
+
+    /**
+     * @ORM\Column(name="nome_tratamento", type="string", length=80, nullable=true)
+     * @var string
+     */
+    private $nomeTratamento;
 
     /**
      * @return int
@@ -106,8 +112,25 @@ class Pessoa
     /**
      * @return string
      */
+    public function getNomeTratamento(): ? string
+    {
+        return $this->nomeTratamento;
+    }
+
+    /**
+     * @param string $nomeTratamento
+     */
+    public function setNomeTratamento(string $nomeTratamento)
+    {
+        $this->nomeTratamento = $nomeTratamento;
+    }
+
+
+    /**
+     * @return string
+     */
     public function __toString()
     {
-        return (string)$this->documento . ' - ' . $this->nome;
+        return (string)$this->documento . ' - ' . ($this->nomeTratamento ?? $this->nome);
     }
 }

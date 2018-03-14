@@ -1,0 +1,17 @@
+easy_admin:
+  entities:
+    Motivo:
+      class: App\Entity\Motivo
+      label: "Motivos"
+      list:
+        fields:
+          - 'nome'
+          - { property: 'descricao', label: 'Descriçãoo' }
+      show:
+        fields:
+          - 'nome'
+          - { property: 'descricao', label: 'Descriçãoo' }
+      edit:
+        fields:
+          - 'nome'
+          - { property: 'descricao', label: 'Descriçãoo' }

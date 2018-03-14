@@ -1,0 +1,9 @@
+easy_admin:
+  entities:
+    Pessoa:
+      class: App\Entity\Pessoa
+      label: "Pessoas"
+      list:
+        fields: ['tipo_documento', 'documento', 'nome', 'nomeTratamento']
+      show:
+        fields: ['tipo_documento', 'documento', 'nome', 'nomeTratamento']

@@ -90,17 +90,13 @@ class Processo
      */
     private $requeridos;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Usuario")
-     * @ORM\JoinColumn(name="usuario_id", referencedColumnName="id", nullable=false)
-     * @var Usuario
-     */
+
     private $usuarioCriacao;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Filial")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Pessoa")
      * @ORM\JoinColumn(name="filial_id", referencedColumnName="id", nullable=true)
-     * @var Filial
+     * @var Pessoa
      */
     private $filial;
 
@@ -276,17 +272,22 @@ class Processo
     }
 
     /**
-     * @return Filial
+     * @return Pessoa
      */
-    public function getFilial(): ? Filial
+    public function getFilial(): Pessoa
     {
         return $this->filial;
     }
 
+    public function getFilialNomeTratamento()
+    {
+        return $this->filial->getNomeTratamento() ?? $this->filial;
+    }
+
     /**
-     * @param Filial $filial
+     * @param Pessoa $filial
      */
-    public function setFilial(Filial $filial)
+    public function setFilial(Pessoa $filial)
     {
         $this->filial = $filial;
     }

@@ -1,0 +1,13 @@
+easy_admin:
+  design:
+    menu:
+      - { entity: 'Processo', label: 'Processos', icon: 'gavel', default: true }
+      - label: "Cadastros"
+        icon: 'plus-square'
+        children:
+          - { entity: 'Comarca', label: 'Comarcas', icon: 'institution'}
+          - { entity: 'Vara', label: 'Varas', icon: 'home'}
+          - { entity: 'Pessoa', label: 'Pessoas', icon: 'user-circle'}
+          - { entity: 'Motivo', label: 'Motivos', icon: 'question-circle' }
+          - { entity: 'Classificacao', label: 'Classificações', icon: 'sort-amount-desc' }
+          - { entity: 'Situacao', label: 'Situações', icon: 'stack-exchange' }
