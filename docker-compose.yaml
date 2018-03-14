@@ -1,11 +1,9 @@
 version: '3'
-
 services:
-
-    app:
-        image: ambientum/php:7.2-nginx
-        container_name: processo-juridico-app
-        volumes:
-            - .:/var/www/app
-        ports:
-            - 8000:8080
+  app:
+    image: ambientum/php:7.2-nginx
+    container_name: processo-juridico-app
+    volumes:
+      - .:/var/www/app
+    ports:
+      - 8000:8080
