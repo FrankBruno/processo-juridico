@@ -3,13 +3,12 @@ easy_admin:
     Situacao:
       class: App\Entity\Situacao
       label: "Situações"
-      list:
-        fields: ['nome','descricao']
-      show:
+      form:
+        title: "Adicionar/Editar Situação"
         fields:
           - 'nome'
           - { property: 'descricao', label: 'Descrição' }
-      edit:
+      list:
         fields:
           - 'nome'
           - { property: 'descricao', label: 'Descrição' }

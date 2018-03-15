@@ -3,5 +3,8 @@ easy_admin:
     Comarca:
       class: App\Entity\Comarca
       label: "Comarcas"
+      form:
+        title: "Adicionar/Editar Comarca"
+        fields: ['uf','nome', 'varas']
       list:
         fields: ['uf','nome', 'varas']

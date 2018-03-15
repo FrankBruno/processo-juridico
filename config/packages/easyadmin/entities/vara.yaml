@@ -3,5 +3,10 @@ easy_admin:
     Vara:
       class: App\Entity\Comarca\Vara
       label: "Varas"
+      form:
+        title: "Adicionar/Editar Vara"
+        fields:
+          - { property: 'comarca', label: 'Comarca', type: 'easyadmin_autocomplete' }
+          - 'nome'
       list:
         fields: ['comarca','nome']

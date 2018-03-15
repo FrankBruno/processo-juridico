@@ -46,6 +46,20 @@ class Pessoa
     private $nomeTratamento;
 
     /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Processo", mappedBy="requerentes")
+     * @ORM\JoinTable(name="processo_requerente", joinColumns={@ORM\JoinColumn(name="id", referencedColumnName="pessoa_id")})
+     * @var Processo[]
+     */
+    private $processosRequerentes;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Processo", mappedBy="requeridos")
+     * @ORM\JoinTable(name="processo_requerente", joinColumns={@ORM\JoinColumn(name="id", referencedColumnName="pessoa_id")})
+     * @var Processo[]
+     */
+    private $processosRequeridos;
+
+    /**
      * @return int
      */
     public function getId(): ? int
@@ -114,7 +128,7 @@ class Pessoa
      */
     public function getNomeTratamento(): ? string
     {
-        return $this->nomeTratamento;
+        return $this->nomeTratamento ?? '';
     }
 
     /**
@@ -125,7 +139,26 @@ class Pessoa
         $this->nomeTratamento = $nomeTratamento;
     }
 
+    /**
+     * @return Processo[]
+     */
+    public function getProcessosRequerentes()
+    {
+        return $this->processosRequerentes;
+    }
 
+    /**
+     * @return Processo[]
+     */
+    public function getProcessosRequeridos()
+    {
+        return $this->processosRequeridos;
+    }
+
+    public function getNomeVisualizacao(): string
+    {
+        return $this->nomeTratamento ?? $this->nome;
+    }
     /**
      * @return string
      */

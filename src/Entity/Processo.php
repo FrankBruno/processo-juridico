@@ -26,7 +26,7 @@ class Processo
     private $id;
 
     /**
-     * @ORM\Column(name="codigo", type="string", length=50, nullable=false)
+     * @ORM\Column(name="codigo", type="string", length=50, nullable=false, unique=true)
      * @var string
      */
     private $codigo;
@@ -61,7 +61,7 @@ class Processo
     private $motivos;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Pessoa")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Pessoa", inversedBy="processosRequerentes")
      * @ORM\JoinTable(
      *     name="processo_requerente",
      *     joinColumns={
@@ -255,7 +255,18 @@ class Processo
         $lista = '';
 
         $this->requerentes->map(function(Pessoa $requerente) use (&$lista) {
-            $lista .= $requerente->getDocumento() . ' - '. ($requerente->getNomeTratamento() ?? $requerente->getNome()) . ', ';
+            $lista .= $requerente->getDocumento() . ' - '. ($requerente->getNomeTratamento() ?: $requerente->getNome()) . ', ';
+        });
+
+        return trim($lista, ', ');
+    }
+
+    public function getListaRequeridos()
+    {
+        $lista = '';
+
+        $this->requeridos->map(function(Pessoa $requerido) use (&$lista) {
+            $lista .= $requerido->getDocumento() . ' - '. ($requerido->getNomeTratamento() ?: $requerido->getNome()) . ', ';
         });
 
         return trim($lista, ', ');
@@ -293,15 +304,15 @@ class Processo
         return $this->filial;
     }
 
-    public function getFilialNomeTratamento()
+    public function getFilialVisualizacao()
     {
-        return $this->filial->getNomeTratamento() ?? $this->filial;
+        return $this->filial ? $this->filial->getNomeVisualizacao() : '';
     }
 
     /**
-     * @param Pessoa $filial
+     * @param Pessoa|null $filial
      */
-    public function setFilial(Pessoa $filial)
+    public function setFilial(Pessoa $filial = null)
     {
         $this->filial = $filial;
     }
@@ -321,8 +332,6 @@ class Processo
     {
         $this->fabricante = $fabricante;
     }
-
-
 
     /**
      * @return float

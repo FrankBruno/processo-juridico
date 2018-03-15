@@ -1,17 +1,19 @@
 easy_admin:
-
   site_name: '<i class="fa fa-balance-scale"></i> Processo Jurídico'
-
   design:
     form_theme: 'vertical'
     color_scheme: 'dark'
     brand_color: '#e01d25'
     assets:
       favicon: 'bundles/easyadmin/img/balance.ico'
-
   list:
     title: 'Lista de %%entity_label%%'
     actions:
       - { name: 'show', label: '', title: 'Visualizar', icon: 'search' }
       - { name: 'edit', label: '', title: 'Editar', icon: 'edit' }
-      - { name: 'delete', label: '', title: 'Remover', icon: 'trash' }
+      - { name: '-delete'}
+      # - { name: '-delete', label: '', title: 'Remover', icon: 'trash' }
+    max_results: 10
+
+  show:
+    title: 'Visualizar %%entity_label%%'

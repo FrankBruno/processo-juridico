@@ -3,15 +3,12 @@ easy_admin:
     Motivo:
       class: App\Entity\Motivo
       label: "Motivos"
+      form:
+        title: "Adicionar/Editar Motivo"
+        fields:
+          - 'nome'
+          - { property: 'descricao', label: 'Descriçãoo' }
       list:
-        fields:
-          - 'nome'
-          - { property: 'descricao', label: 'Descriçãoo' }
-      show:
-        fields:
-          - 'nome'
-          - { property: 'descricao', label: 'Descriçãoo' }
-      edit:
         fields:
           - 'nome'
           - { property: 'descricao', label: 'Descriçãoo' }

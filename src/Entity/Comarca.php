@@ -115,7 +115,7 @@ class Comarca
 
     public function __toString()
     {
-        return (string)$this->nome;
+        return (string)$this->nome . ' ('.$this->uf->getSigla() .')';
     }
 
     private function addVara(Vara $vara)

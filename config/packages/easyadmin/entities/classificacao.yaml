@@ -2,16 +2,13 @@ easy_admin:
   entities:
     Classificacao:
       class: App\Entity\Classificacao
-      label: Classificações'
+      label: "Classificações"
+      form:
+        title: "Adicionar/Editar Classificação"
+        fields:
+          - 'nome'
+          - { property: 'provisao', label: 'Provisão' }
       list:
         fields:
-            - 'nome'
-            - { property: 'provisao', label: 'Provisão' }
-      show:
-        fields:
-            - 'nome'
-            - { property: 'provisao', label: 'Provisão' }
-      edit:
-        fields:
-            - 'nome'
-            - { property: 'provisao', label: 'Provisão' }
+          - 'nome'
+          - { property: 'provisao', label: 'Provisão' }

@@ -3,7 +3,8 @@ easy_admin:
     Pessoa:
       class: App\Entity\Pessoa
       label: "Pessoas"
+      form:
+        title: "Adicionar/Editar Pessoa"
+        fields: ['tipoDocumento', 'documento', 'nome', 'nomeTratamento']
       list:
-        fields: ['tipo_documento', 'documento', 'nome', 'nomeTratamento']
-      show:
-        fields: ['tipo_documento', 'documento', 'nome', 'nomeTratamento']
+        fields: ['tipoDocumento', 'documento', 'nome', 'nomeTratamento', 'processosRequerentes', 'processosRequeridos']
