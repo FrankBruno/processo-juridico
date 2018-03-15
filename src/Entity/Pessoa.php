@@ -134,7 +134,7 @@ class Pessoa
     /**
      * @param string $nomeTratamento
      */
-    public function setNomeTratamento(string $nomeTratamento)
+    public function setNomeTratamento(string $nomeTratamento = null)
     {
         $this->nomeTratamento = $nomeTratamento;
     }
@@ -159,6 +159,7 @@ class Pessoa
     {
         return $this->nomeTratamento ?? $this->nome;
     }
+
     /**
      * @return string
      */

@@ -5,6 +5,6 @@ easy_admin:
       label: "Comarcas"
       form:
         title: "Adicionar/Editar Comarca"
-        fields: ['uf','nome', 'varas']
+        fields: ['uf','nome']
       list:
         fields: ['uf','nome', 'varas']

@@ -255,7 +255,7 @@ class Processo
         $lista = '';
 
         $this->requerentes->map(function(Pessoa $requerente) use (&$lista) {
-            $lista .= $requerente->getDocumento() . ' - '. ($requerente->getNomeTratamento() ?: $requerente->getNome()) . ', ';
+            $lista .= $requerente->getDocumento() . ' - '. $requerente->getNomeVisualizacao() . ', ';
         });
 
         return trim($lista, ', ');
@@ -266,7 +266,7 @@ class Processo
         $lista = '';
 
         $this->requeridos->map(function(Pessoa $requerido) use (&$lista) {
-            $lista .= $requerido->getDocumento() . ' - '. ($requerido->getNomeTratamento() ?: $requerido->getNome()) . ', ';
+            $lista .= $requerido->getDocumento() . ' - '. $requerido->getNomeVisualizacao() . ', ';
         });
 
         return trim($lista, ', ');

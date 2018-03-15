@@ -102,7 +102,7 @@ class Comarca
      */
     public function getVaras()
     {
-        return $this->varas;
+        return $this->varas ?: 'sdf asd';
     }
 
     /**
