@@ -408,7 +408,7 @@ class Processo
     /**
      * @param \DateTime $ajuizadoEm
      */
-    public function setAjuizadoEm(\DateTime $ajuizadoEm)
+    public function setAjuizadoEm(\DateTime $ajuizadoEm = null)
     {
         $this->ajuizadoEm = $ajuizadoEm;
     }
@@ -424,7 +424,7 @@ class Processo
     /**
      * @param \DateTime $recebidoEm
      */
-    public function setRecebidoEm(\DateTime $recebidoEm)
+    public function setRecebidoEm(\DateTime $recebidoEm = null)
     {
         $this->recebidoEm = $recebidoEm;
     }
